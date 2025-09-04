@@ -2,6 +2,14 @@
 
 Welcome to the Article 26 Hackathon! This repository serves as the foundation for building an enterprise-grade time booking system for German consultant companies. The goal is to implement a comprehensive solution that allows employees to accurately track their working time while ensuring compliance with German labor laws.
 
+## 📋 Table of Contents
+
+- [🎯 Hackathon Goal](#-hackathon-goal)
+- [🛠️ Installation Requirements](#️-installation-requirements)
+- [🚀 Quick Start](#-quick-start)
+- [📁 Repository Structure](#-repository-structure)
+- [🎯 Getting Started with Development](#-getting-started-with-development)
+
 ## 🎯 Hackathon Goal
 
 The objective of this hackathon is to develop a **time booking system** that enables:
@@ -82,57 +90,7 @@ Recommended IDE with excellent TypeScript and React support.
 - ESLint
 - Tailwind CSS IntelliSense
 
-## 📁 Repository Structure
-
-This repository is organized as follows:
-
-```
-article26-hackathon/
-├── compose.yaml                   # Docker Compose configuration for database
-├── LICENSE                        # MIT License
-├── README.md                      # This file
-└── time-booking-hackathon/        # Main Next.js application
-    ├── DATABASE_SETUP.md          # Database setup instructions
-    ├── package.json               # Next.js app dependencies
-    ├── next.config.ts             # Next.js configuration
-    ├── tsconfig.json              # TypeScript configuration
-    ├── postcss.config.mjs         # PostCSS configuration
-    ├── db.ts                      # Database connection utilities
-    ├── seed-database.js           # Database seeding script
-    ├── app/                       # Next.js App Router directory
-    │   ├── layout.tsx             # Root layout component
-    │   ├── page.tsx               # Home page
-    │   ├── globals.css            # Global CSS styles
-    │   ├── add-user/              # User management page
-    │   ├── api/                   # API routes
-    │   │   └── users/             # User API endpoints
-    │   └── components/            # Reusable React components
-    │       └── Header.tsx         # Header component
-    └── public/                    # Static assets
-        ├── *.svg                  # Various SVG icons
-        └── image.png              # Sample image
-```
-
-### Key Components:
-
-**🐳 Docker Setup (`compose.yaml`)**
-- PostgreSQL database (port 5432)
-- Adminer database management tool (port 8080)
-- Pre-configured with sample credentials
-
-**⚛️ Next.js Application (`time-booking-hackathon/`)**
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: PrimeReact
-- **Database**: PostgreSQL with pg driver
-
-**📊 Database**
-- PostgreSQL with Docker Compose
-- Seeding script for sample data
-- Adminer for database management
-
-## 🚀 Quick Start
+## � Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -147,7 +105,6 @@ article26-hackathon/
 
 3. **Install dependencies and setup the application**
    ```bash
-   cd time-booking-hackathon
    npm install
    npm run seed
    ```
@@ -168,6 +125,62 @@ article26-hackathon/
    ![Example Application Screenshot](example-app-screenshot.png)
    
    *The application should display the time booking interface with user management functionality.*
+
+## �📁 Repository Structure
+
+This repository is organized as follows:
+
+```
+article26-hackathon/
+├── .env.local                     # Environment variables for local development
+├── .gitignore                     # Git ignore file
+├── compose.yaml                   # Docker Compose configuration for database
+├── LICENSE                        # MIT License
+├── README.md                      # This file
+├── NEXTJS_README.md              # Next.js specific documentation
+├── example-app-screenshot.png    # Screenshot of the working application
+├── package.json                  # Node.js dependencies and scripts
+├── next.config.ts                # Next.js configuration
+├── tsconfig.json                 # TypeScript configuration
+├── postcss.config.mjs            # PostCSS configuration
+├── db.ts                         # Database connection utilities
+├── seed-database.js              # Database seeding script
+├── DATABASE_SETUP.md             # Database setup instructions
+├── app/                          # Next.js App Router directory
+│   ├── layout.tsx                # Root layout component
+│   ├── page.tsx                  # Home page
+│   ├── globals.css               # Global CSS styles
+│   ├── favicon.ico               # Application favicon
+│   ├── add-user/                 # User management page
+│   │   └── page.tsx              # Add user page component
+│   ├── api/                      # API routes
+│   │   └── users/                # User API endpoints
+│   │       └── route.ts          # User CRUD operations
+│   └── components/               # Reusable React components
+│       └── Header.tsx            # Header component
+└── public/                       # Static assets
+    ├── *.svg                     # Various SVG icons
+    └── image.png                 # Sample image
+```
+
+### Key Components:
+
+**🐳 Docker Setup (`compose.yaml`)**
+- PostgreSQL database (port 5432)
+- Adminer database management tool (port 8080)
+- Pre-configured with sample credentials
+
+**⚛️ Next.js Application (Root Directory)**
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: PrimeReact
+- **Database**: PostgreSQL with pg driver
+
+**📊 Database**
+- PostgreSQL with Docker Compose
+- Seeding script for sample data
+- Adminer for database management
 
 ## 🎯 Getting Started with Development
 
