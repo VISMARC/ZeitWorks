@@ -90,7 +90,7 @@ Recommended IDE with excellent TypeScript and React support.
 - ESLint
 - Tailwind CSS IntelliSense
 
-## � Quick Start
+## 🚀 Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -126,7 +126,7 @@ Recommended IDE with excellent TypeScript and React support.
    
    *The application should display the time booking interface with user management functionality.*
 
-## �📁 Repository Structure
+## 📁 Repository Structure
 
 This repository is organized as follows:
 
