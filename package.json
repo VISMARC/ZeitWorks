@@ -1,0 +1,29 @@
+{
+  "name": "time-booking-hackathon",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "seed": "node seed-database.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "next": "15.5.2",
+    "pg": "^8.11.3",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/pg": "^8.10.9",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
