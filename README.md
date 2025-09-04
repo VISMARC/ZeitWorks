@@ -51,7 +51,20 @@ The complete feature backlog and user stories are available in our [GitHub Proje
 
 To participate in this hackathon, you'll need to install the following tools:
 
-### 1. Docker Desktop
+### 1. Git
+Git is required to clone the repository and manage version control.
+
+**Download and Install:**
+- **Windows**: Download from [git-scm.com](https://git-scm.com/download/win)
+- **Mac**: Install via Homebrew `brew install git` or download from [git-scm.com](https://git-scm.com/download/mac)
+- **Linux**: Install via package manager (e.g., `sudo apt install git` on Ubuntu)
+
+**Verify Installation:**
+```bash
+git --version
+```
+
+### 2. Docker Desktop
 Docker is used to run the PostgreSQL database and Adminer (database management tool).
 
 **Download and Install:**
@@ -64,7 +77,7 @@ docker --version
 docker-compose --version
 ```
 
-### 2. Node.js
+### 3. Node.js
 The application is built with Next.js, requiring Node.js version 18 or higher.
 
 **Download and Install:**
@@ -77,7 +90,7 @@ node --version
 npm --version
 ```
 
-### 3. Visual Studio Code
+### 4. Visual Studio Code
 Recommended IDE with excellent TypeScript and React support.
 
 **Download and Install:**
