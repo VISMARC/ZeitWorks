@@ -72,7 +72,54 @@ Login credentials:
 npm run dev
 ```
 
+## API Endpoints
+
+### Departments
+- `GET /api/departments` - Get all departments
+- `POST /api/departments` - Create new department
+
+### Projects  
+- `GET /api/projects` - Get all projects
+- `GET /api/projects?department_id=1` - Get projects by department
+- `POST /api/projects` - Create new project
+
+### Booking Accounts
+- `GET /api/booking-accounts` - Get all booking accounts
+- `GET /api/booking-accounts?project_id=1` - Get booking accounts by project
+- `POST /api/booking-accounts` - Create new booking account
+
+### Users
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create new user
+
 ## Database Schema
+
+### Departments Table
+| Column | Type | Constraints |
+|--------|------|-------------|
+| id | SERIAL | PRIMARY KEY |
+| name | VARCHAR(100) | UNIQUE, NOT NULL |
+| description | TEXT | |
+| created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP |
+
+### Projects Table
+| Column | Type | Constraints |
+|--------|------|-------------|
+| id | SERIAL | PRIMARY KEY |
+| name | VARCHAR(200) | NOT NULL |
+| customer_name | VARCHAR(200) | NOT NULL |
+| description | TEXT | |
+| department_id | INTEGER | REFERENCES departments(id) |
+| created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP |
+
+### Booking Accounts Table
+| Column | Type | Constraints |
+|--------|------|-------------|
+| id | SERIAL | PRIMARY KEY |
+| name | VARCHAR(100) | NOT NULL |
+| description | TEXT | |
+| project_id | INTEGER | REFERENCES projects(id) |
+| created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP |
 
 ### Users Table
 | Column | Type | Constraints |
@@ -84,10 +131,9 @@ npm run dev
 | department | VARCHAR(50) | NOT NULL |
 | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP |
 
-## Sample Users
-The seeding script will create 8 users across different roles and departments:
-- Developers (Engineering)
-- Designers (Design)
-- Manager (Engineering)
-- Analyst (Business)
-- Tester (Quality Assurance)
+## Sample Data
+The seeding script will create:
+- **5 Departments**: IoT Solutions, Industry 4.0, App Development, DevOps & Cloud, Data Analytics
+- **10 Projects**: Including projects for BMW, Mercedes-Benz, Siemens, Volkswagen, Bosch, BASF, SAP, Adidas, Deutsche Bank, and Bayer
+- **50 Booking Accounts**: 5 accounts per project (Scrum Meetings, Refinement Sessions, Development Work, Business Analysis, Quality Assurance)
+- **8 Users**: Across different roles and departments
