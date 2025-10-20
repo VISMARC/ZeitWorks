@@ -21,16 +21,16 @@ const departments = [
 ];
 
 const projects = [
-  { name: 'BMW Connected Car Platform', customer_name: 'BMW AG', description: 'IoT platform for connected vehicles', department_id: 1 },
-  { name: 'Mercedes Production Line Optimization', customer_name: 'Mercedes-Benz AG', description: 'Industry 4.0 solution for production efficiency', department_id: 2 },
-  { name: 'Siemens Mobile Workforce App', customer_name: 'Siemens AG', description: 'Mobile app for field technicians', department_id: 3 },
-  { name: 'Volkswagen CI/CD Pipeline', customer_name: 'Volkswagen AG', description: 'DevOps automation for software delivery', department_id: 4 },
-  { name: 'Bosch Production Analytics', customer_name: 'Robert Bosch GmbH', description: 'Data analytics for manufacturing insights', department_id: 5 },
-  { name: 'BASF Smart Factory Initiative', customer_name: 'BASF SE', description: 'IoT sensors and monitoring systems', department_id: 1 },
-  { name: 'SAP Digital Twin Platform', customer_name: 'SAP SE', description: 'Digital twin implementation for Industry 4.0', department_id: 2 },
-  { name: 'Adidas E-Commerce Portal', customer_name: 'Adidas AG', description: 'Next-generation shopping experience', department_id: 3 },
-  { name: 'Deutsche Bank Cloud Migration', customer_name: 'Deutsche Bank AG', description: 'Cloud infrastructure modernization', department_id: 4 },
-  { name: 'Bayer Research Data Platform', customer_name: 'Bayer AG', description: 'Advanced analytics for pharmaceutical research', department_id: 5 }
+  { name: 'BMW Connected Car Platform', customer_name: 'BMW AG', description: 'IoT platform for connected vehicles', department_index: 0 }, // IoT Solutions
+  { name: 'Mercedes Production Line Optimization', customer_name: 'Mercedes-Benz AG', description: 'Industry 4.0 solution for production efficiency', department_index: 1 }, // Industry 4.0
+  { name: 'Siemens Mobile Workforce App', customer_name: 'Siemens AG', description: 'Mobile app for field technicians', department_index: 2 }, // App Development
+  { name: 'Volkswagen CI/CD Pipeline', customer_name: 'Volkswagen AG', description: 'DevOps automation for software delivery', department_index: 3 }, // DevOps & Cloud
+  { name: 'Bosch Production Analytics', customer_name: 'Robert Bosch GmbH', description: 'Data analytics for manufacturing insights', department_index: 4 }, // Data Analytics
+  { name: 'BASF Smart Factory Initiative', customer_name: 'BASF SE', description: 'IoT sensors and monitoring systems', department_index: 0 }, // IoT Solutions
+  { name: 'SAP Digital Twin Platform', customer_name: 'SAP SE', description: 'Digital twin implementation for Industry 4.0', department_index: 1 }, // Industry 4.0
+  { name: 'Adidas E-Commerce Portal', customer_name: 'Adidas AG', description: 'Next-generation shopping experience', department_index: 2 }, // App Development
+  { name: 'Deutsche Bank Cloud Migration', customer_name: 'Deutsche Bank AG', description: 'Cloud infrastructure modernization', department_index: 3 }, // DevOps & Cloud
+  { name: 'Bayer Research Data Platform', customer_name: 'Bayer AG', description: 'Advanced analytics for pharmaceutical research', department_index: 4 } // Data Analytics
 ];
 
 const bookingAccounts = [
@@ -177,12 +177,9 @@ async function seedDatabase() {
     // First, create all tables
     await createTables();
     
-    // Clear existing data (order matters due to foreign keys)
-    await connectionPool.query('DELETE FROM booking_accounts');
-    await connectionPool.query('DELETE FROM projects');
-    await connectionPool.query('DELETE FROM departments');
-    await connectionPool.query('DELETE FROM users');
-    console.log('Cleared existing data');
+    // Clear existing data and reset sequences (order matters due to foreign keys)
+    await connectionPool.query('TRUNCATE booking_accounts, projects, departments, users RESTART IDENTITY CASCADE');
+    console.log('Cleared existing data and reset ID sequences');
     
     // Insert departments first
     const departmentIds = [];
@@ -211,7 +208,7 @@ async function seedDatabase() {
         project.name,
         project.customer_name,
         project.description,
-        project.department_id
+        departmentIds[project.department_index]
       ]);
       projectIds.push(result.rows[0].id);
       console.log(`Inserted project: ${project.name} with ID: ${result.rows[0].id}`);

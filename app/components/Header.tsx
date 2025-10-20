@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from 'primereact/button';
 
 interface HeaderProps {
@@ -31,15 +32,26 @@ export default function Header({ title, subtitle, showAddButton = false, onAddCl
               <p className="text-gray-600 mt-1">{subtitle}</p>
             </div>
           </div>
-          {showAddButton && onAddClick && (
-            <Button
-              label="Add New User"
-              icon="pi pi-plus"
-              onClick={onAddClick}
-              style={{backgroundColor: 'var(--brand-color)', borderColor: 'var(--brand-color)'}}
-              className="hover:opacity-90 transition-opacity"
-            />
-          )}
+          <div className="flex items-center gap-3">
+            <Link href="/api-doc">
+              <Button
+                label="API Docs"
+                icon="pi pi-book"
+                outlined
+                style={{borderColor: 'var(--brand-color)', color: 'var(--brand-color)'}}
+                className="hover:bg-gray-50 transition-colors"
+              />
+            </Link>
+            {showAddButton && onAddClick && (
+              <Button
+                label="Add New User"
+                icon="pi pi-plus"
+                onClick={onAddClick}
+                style={{backgroundColor: 'var(--brand-color)', borderColor: 'var(--brand-color)'}}
+                className="hover:opacity-90 transition-opacity"
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

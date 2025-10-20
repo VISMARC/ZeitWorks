@@ -11,7 +11,39 @@ export interface Project {
   created_at: string;
 }
 
-// GET all projects or projects by department
+/**
+ * @swagger
+ * /api/projects:
+ *   get:
+ *     summary: Get all projects or filter by department
+ *     description: Retrieve a list of all projects, optionally filtered by department ID
+ *     tags:
+ *       - Projects
+ *     parameters:
+ *       - in: query
+ *         name: department_id
+ *         schema:
+ *           type: integer
+ *         description: Filter projects by department ID
+ *     responses:
+ *       200:
+ *         description: List of projects retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 projects:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Project'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -42,7 +74,60 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST create new project
+/**
+ * @swagger
+ * /api/projects:
+ *   post:
+ *     summary: Create a new project
+ *     description: Create a new project in the system
+ *     tags:
+ *       - Projects
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - customer_name
+ *               - department_id
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Project name
+ *               customer_name:
+ *                 type: string
+ *                 description: Customer name for the project
+ *               description:
+ *                 type: string
+ *                 description: Project description
+ *               department_id:
+ *                 type: integer
+ *                 description: ID of the department this project belongs to
+ *     responses:
+ *       201:
+ *         description: Project created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 project:
+ *                   $ref: '#/components/schemas/Project'
+ *       400:
+ *         description: Bad request - missing required fields or invalid department ID
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

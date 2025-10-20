@@ -8,7 +8,33 @@ export interface Department {
   created_at: string;
 }
 
-// GET all departments
+/**
+ * @swagger
+ * /api/departments:
+ *   get:
+ *     summary: Get all departments
+ *     description: Retrieve a list of all departments in the system
+ *     tags:
+ *       - Departments
+ *     responses:
+ *       200:
+ *         description: List of departments retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 departments:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Department'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET() {
   try {
     const result = await connectionPool.query(
@@ -22,7 +48,59 @@ export async function GET() {
   }
 }
 
-// POST create new department
+/**
+ * @swagger
+ * /api/departments:
+ *   post:
+ *     summary: Create a new department
+ *     description: Create a new department in the system
+ *     tags:
+ *       - Departments
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - description
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Department name
+ *               description:
+ *                 type: string
+ *                 description: Department description
+ *     responses:
+ *       201:
+ *         description: Department created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 department:
+ *                   $ref: '#/components/schemas/Department'
+ *       400:
+ *         description: Bad request - missing required fields
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       409:
+ *         description: Conflict - department name already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

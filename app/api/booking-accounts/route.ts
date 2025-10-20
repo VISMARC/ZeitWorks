@@ -11,7 +11,39 @@ export interface BookingAccount {
   created_at: string;
 }
 
-// GET all booking accounts or booking accounts by project
+/**
+ * @swagger
+ * /api/booking-accounts:
+ *   get:
+ *     summary: Get all booking accounts or filter by project
+ *     description: Retrieve a list of all booking accounts, optionally filtered by project ID
+ *     tags:
+ *       - Booking Accounts
+ *     parameters:
+ *       - in: query
+ *         name: project_id
+ *         schema:
+ *           type: integer
+ *         description: Filter booking accounts by project ID
+ *     responses:
+ *       200:
+ *         description: List of booking accounts retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 booking_accounts:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/BookingAccount'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -42,7 +74,56 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST create new booking account
+/**
+ * @swagger
+ * /api/booking-accounts:
+ *   post:
+ *     summary: Create a new booking account
+ *     description: Create a new booking account for a project
+ *     tags:
+ *       - Booking Accounts
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - project_id
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Booking account name
+ *               description:
+ *                 type: string
+ *                 description: Booking account description
+ *               project_id:
+ *                 type: integer
+ *                 description: ID of the project this booking account belongs to
+ *     responses:
+ *       201:
+ *         description: Booking account created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 booking_account:
+ *                   $ref: '#/components/schemas/BookingAccount'
+ *       400:
+ *         description: Bad request - missing required fields or invalid project ID
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
