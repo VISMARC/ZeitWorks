@@ -111,8 +111,8 @@ export default function Home() {
       <Toast ref={toast} />
       
       <Header 
-        title="Article 26 Hackathon Setup"
-        subtitle="Manage your team members and participants"
+        title="ZeitWorks"
+        subtitle="Time that Works For You"
         showAddButton={true}
         onAddClick={handleAddUser}
       />
@@ -131,7 +131,7 @@ export default function Home() {
             <h3 className="text-xl font-semibold text-gray-700 mb-2">No users found</h3>
             <p className="text-gray-500 mb-6">Get started by adding your first team member</p>
             <Button
-              label="Add First User"
+              label="Add"
               icon="pi pi-plus"
               onClick={handleAddUser}
               style={{backgroundColor: 'var(--brand-color)', borderColor: 'var(--brand-color)'}}

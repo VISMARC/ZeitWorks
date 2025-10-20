@@ -104,7 +104,7 @@ export default function AddUser() {
       <Toast ref={toast} />
       
       <Header 
-        title="Add New User"
+        title="Book"
         subtitle="Fill in the details to add a new user to the system."
         showAddButton={false}
       />

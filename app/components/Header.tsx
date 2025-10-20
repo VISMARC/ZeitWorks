@@ -18,8 +18,8 @@ export default function Header({ title, subtitle, showAddButton = false, onAddCl
             <div className="flex-shrink-0">
               <div className="p-2 rounded-lg shadow-md" style={{backgroundColor: 'var(--brand-color)'}}>
                 <Image
-                  src="/image.png"
-                  alt="Article 26 Hackathon Logo"
+                  src="/logo.png"
+                  alt="ZeitWorks"
                   width={80}
                   height={80}
                   className="rounded-md"
